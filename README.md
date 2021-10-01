@@ -10,6 +10,6 @@ Automation tool for Diag-V
    How To Use: 
       From PowerShell as admin execute the following and follow the prompts:
 ```Powershell
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;Invoke-Expression('$module="LogCollector";$repo="PowershellScripts"'+(new-object System.net.webclient).DownloadString('https://raw.githubusercontent.com/Louisjreeves/AutoHVAllocation/main/TestHVAllocation.ps1'));Invoke-AutoHVAllocation
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;Invoke-Expression('$module="TestHVAAllocation";$repo="PowershellScripts"'+(new-object System.net.webclient).DownloadString('https://raw.githubusercontent.com/Louisjreeves/AutoHVAllocation/main/TestHVAllocation.ps1'));Invoke-AutoHVAllocation
 ```
 
