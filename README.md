@@ -7,8 +7,13 @@ powershell. Allso thank you to Jake Morrison who wrote the Module which does the
 Keep every bit of code you come across and use everything you know and use every bit of code you have to find examples of what works. 
 
 ## AutoHVAllocation
+![NTWKPic](https://user-images.githubusercontent.com/79279019/138011705-00902aa6-cc20-48da-98d3-96c7bbc7f7d7.png)
+
    ![TestHVAlloc](https://user-images.githubusercontent.com/79279019/135662153-0427ecb2-332a-40bb-90d8-5f2f65864487.png)
-   This tool uses diag-v to query cluster node hyper-v for vms and returns the resource ballance between nodes with test-hypervAllocaiton within the diag-v module
+   
+   
+   This tool
+ uses diag-v to query cluster node hyper-v for vms and returns the resource ballance between nodes with test-hypervAllocaiton within the diag-v module
    
    ![alt text](readme/AutoHVAllocation.jpg)
    
