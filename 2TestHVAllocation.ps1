@@ -115,7 +115,7 @@ else {
 
 }
 
-Read-Host -Prompt "Press Enter to exit"
+
 
 
 <#https://codeload.github.com/techthoughts2/Diag-V/zip/master.zip
