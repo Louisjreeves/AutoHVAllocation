@@ -13,11 +13,11 @@ Keep every bit of code you come across and use everything you know and use every
    This tool
  uses diag-v to query cluster node hyper-v for vms and returns the resource ballance between nodes with test-hypervAllocaiton within the diag-v module
    
-   ![alt text](readme/AutoHVAllocation.jpg)
+   ![alt text](https://user-images.githubusercontent.com/79279019/135662153-0427ecb2-332a-40bb-90d8-5f2f65864487.png))
    
    How To Use: 
       From PowerShell as admin execute the following and follow the prompts:
 ```Powershell
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;Invoke-Expression('$module="TestHVAAllocation";$repo="PowershellScripts"'+(new-object System.net.webclient).DownloadString('https://raw.githubusercontent.com/Louisjreeves/AutoHVAllocation/main/TestHVAllocation.ps1'));Invoke-AutoHVAllocation
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;Invoke-Expression('$module="TestHVAAllocation";$repo="PowershellScripts"'+(new-object System.net.webclient).DownloadString('https://raw.githubusercontent.com/Louisjreeves/AutoHVAllocation/main/3TestHVAllocation.ps1'));Invoke-AutoHVAllocation
 ```
 
