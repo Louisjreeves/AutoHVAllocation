@@ -1,4 +1,4 @@
-﻿#Diag-V-master.zip
+#Diag-V-master.zip
 
 #C:\Users\Administrator.Corp\AppData\Local\Temp
 #C:\Program Files (x86)\WindowsPowerShell\Modules
@@ -32,8 +32,8 @@ $cred = Get-Credential
  
 
 #34 to 71
-
-$MyTemp=(Get-Item $env:temp).fullname
+Set-Location -Path $PSScriptRoot
+$MyTemp=(Get-Item $PSScriptRoot).fullname
  $src = 'src'
 $downloada = 'diag-v-master'
  $module = 'Diag-V'; $branch = 'master'
@@ -47,18 +47,22 @@ try
     $StatusCode = $_.Exception.Response.StatusCode.value__
   }
 
-  $fullpath= "C:\Users\*\AppData\Local\Temp\master.zip"
+  $fullpath = "$PSScriptRoot\master.zip"
 
 #$GetFile = $mytemp # diag-v-master.zip
 $getDIagVFol = (split-path $fullpath -Leaf).Split(".")[0]  #diag-v-master
-$getDiagpath = (split-path $fullpath -parent)  #C:\Users\Administrator.Corp\Desktop
-
+#$getDiagpath = (split-path $fullpath -parent)  #C:\Users\Administrator.Corp\Desktop
+$getDiagPath = $fullpath | Split-Path -Parent
 $md = "$env:ProgramFiles\WindowsPowerShell\Modules"
 $final= "c:\ProgramFiles\WindowsPowerShell\Modules\Diag-V-master\src\"
 $final2= "c:\Program Files\WindowsPowerShell\Modules\Diag-V-master\src\diag-v"
 $extractedDiag= "Diag-v-master"
 $finalFile= "diag-V"
-Expand-Archive -Path $getdiagpath\$getDIagVFol.zip -DestinationPath $md -Force
+
+
+
+Expand-Archive -Path "$getDiagPath\$getDIagVFol.zip" -DestinationPath $md -Force
+
 #cp -Recurse $getfile $md -Force -ErrorAction Stop
 cp -Recurse $final2 $md -Force -ErrorAction stop
 Import-module -Verbose $md\$finalfile -Force
