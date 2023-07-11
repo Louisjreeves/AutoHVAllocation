@@ -27,20 +27,25 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
   exit
 }
 
-$cred = Get-Credential
-
+ 
+   
+  
+ $global:mydom = $env:USERDOMAIN
+$global:myuser = $Env:Username
+ 
+$global:creds = Get-Credential -UserName $mydom\$myuser -Message "Pop Creds for OMIMSWAC $Env:Username"
  
 
 #34 to 71
-Set-Location -Path $PSScriptRoot
-$MyTemp=(Get-Item $PSScriptRoot).fullname
+$myloc1 = Set-Location -Path $PSScriptRoot
+$MyTemp = (Get-Item $PSScriptRoot).fullname
  $src = 'src'
 $downloada = 'diag-v-master'
  $module = 'Diag-V'; $branch = 'master'
 
 try
  {
-   $response = Invoke-WebRequest -Uri https://github.com/Louisjreeves/Diag-V/archive/refs/heads/master.zip -OutFile $MyTemp\$branch.zip
+   $response = Invoke-WebRequest -Uri https://github.com/Louisjreeves/Diag-V/archive/refs/heads/master.zip -OutFile $MyTemp\$branch.zip -WarningAction SilentlyContinue -ErrorAction SilentlyContinue -UseBasicParsing
    $StatusCode = $Response.StatusCode
  } catch 
  {
