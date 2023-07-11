@@ -34,27 +34,30 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 $global:myuser = $Env:Username
  
 $global:creds = Get-Credential -UserName $mydom\$myuser -Message "Pop Creds for OMIMSWAC $Env:Username"
- 
 
-#34 to 71
-$myloc1 = Set-Location -Path $PSScriptRoot
-$MyTemp = (Get-Item $PSScriptRoot).fullname
+##get file 
+
+$MyTemp = (Get-Item $env:PUBLIC).fullname
+$myloc1 = Set-Location -Path $mytemp
  $src = 'src'
 $downloada = 'diag-v-master'
  $module = 'Diag-V'; $branch = 'master'
 
 try
  {
-   $response = Invoke-WebRequest -Uri https://github.com/Louisjreeves/Diag-V/archive/refs/heads/master.zip -OutFile $MyTemp\$branch.zip -WarningAction SilentlyContinue -ErrorAction SilentlyContinue -UseBasicParsing
+   $response = Invoke-WebRequest -Uri https://github.com/Louisjreeves/Diag-V/archive/refs/heads/master.zip -OutFile $mytemp\$branch.zip -WarningAction SilentlyContinue -ErrorAction SilentlyContinue
    $StatusCode = $Response.StatusCode
  } catch 
  {
     $StatusCode = $_.Exception.Response.StatusCode.value__
   }
 
-  $fullpath = "$PSScriptRoot\master.zip"
+#### get file
+$fullpath = "$mytemp\master.zip"
+### move and extract 
 
-#$GetFile = $mytemp # diag-v-master.zip
+ 
+
 $getDIagVFol = (split-path $fullpath -Leaf).Split(".")[0]  #diag-v-master
 #$getDiagpath = (split-path $fullpath -parent)  #C:\Users\Administrator.Corp\Desktop
 $getDiagPath = $fullpath | Split-Path -Parent
@@ -72,7 +75,7 @@ Expand-Archive -Path "$getDiagPath\$getDIagVFol.zip" -DestinationPath $md -Force
 cp -Recurse $final2 $md -Force -ErrorAction stop
 Import-module -Verbose $md\$finalfile -Force
 start-sleep 5
-Write-Host "Beginning to run Test-HypevAllocation. It will return basics about the VM Resources and storage" -ForegroundColor Green
+Write-Host "Beginning to run Auto-HypevAllocation. It will return basics about the VM Resources and storage" -ForegroundColor Green
 Start-Sleep 2
 Test-HyperVAllocation -Credential $cred
 
